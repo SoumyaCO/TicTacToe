@@ -1,0 +1,119 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(248, 215, 215);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(158, 245, 92);
+  height: 95vh;
+  width: 90vw;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px grey;
+  border: 5px solid white
+}
+
+.score{
+  height: 15vh;
+  width:100%;
+  border-radius: 5px 5px 0 0;
+  background-color: black;
+  font-family: monospace;
+  font-size: 2.5rem;
+  text-align: center;
+  padding-top:20px;
+  color: white;
+}
+
+.score-board{
+  width:100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+p{
+  font-family: monospace;
+  font-size: 1.5rem;
+  margin-top:40px;
+}
+
+.game-board {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  width: 65vw;
+  margin-top: 10px;
+  border-radius: 5px 5px 5px 5px;
+  background-color: red;
+}
+
+.cell{
+  height:30%;
+  width:30%;
+  margin: 1%;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow:10px 10px 8px rgb(180, 0, 0);
+  transition: scale 0.4s;
+  font-size: 4.5rem;
+  text-align: center;
+  padding-top: 10px;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.cell:hover{
+  cursor: pointer;
+}
+
+.button{
+  margin-top: 50px;
+  height:90px;
+  width:90px;
+  padding-top: 28px;
+  border-radius: 50px;
+  background-color: white;
+  box-shadow: 10px 10px 8px rgb(4, 113, 4);
+  text-align: center;
+  font-family: monospace;
+  font-size: 1.6rem;
+}
+
+
+
+
+
+
+/* Media Query */
+@media screen and (max-width:500px) {
+  .score{
+    height: 180px;
+    width: 100%;
+  }
+  .game-board{
+    height:400px;
+    width: 380px;
+  }
+  .cell{
+    height: 110px;
+    width: 110px;
+    margin: 5px;
+    box-shadow: 10px 10px 10px rgb(180,0,0);
+  }
+}
+
+
+
+
