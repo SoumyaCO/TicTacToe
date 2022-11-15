@@ -1,21 +1,28 @@
 /* 
 List of features to be made:
 1. reset button => expand/collapse & clearCells 
-2. Score Borad update
-3. Rules for the game
+2. Rules for the game => not now
+3. make it responsive => take CSS course first and pratice in codepen.
 furthur features ===========================
 a. online multiplayer [custom rooms]
 b. give name and avatar 
 */
 
 const cell = document.querySelectorAll(".cell");
+const dialog = document.querySelector(".dialog");
+const cross = document.querySelector("#cross")
+const circle = document.querySelector("#circle")
 // const score = document.querySelectorAll(".score"); // not working.. why??
 
+let crossScore = 0;
+let circleScore = 0;
 let isClicked = true;
 let listOfDivs = [];
-let audio1 = new Audio("sounds/sound-effect1.wav");
-let audio2 = new Audio("sounds/sound-effect2.wav");
-let audio3 = new Audio("sounds/sound-effect-draw.wav");
+let crossAudio = new Audio("sounds/sound-effect1.wav");
+let circleAudio = new Audio("sounds/sound-effect2.wav");
+let loseAudio = new Audio("sounds/game-losing.wav");
+let winaudio = new Audio("sounds/game-winning.wav");
+// let audio3 = new Audio("sounds/sound-effect-draw.wav");
 
 // Scaling effect of the cells ======================================
 const scaleEffect = (e) => {
@@ -28,11 +35,11 @@ const scaleEffect = (e) => {
 const checkCell = (e) => {
   if (isClicked) { // exchanging between 'cross' and 'circle' input by changing the boolean isClicked.
     e.innerHTML = "&#x274C;";
-    audio1.play();
+    crossAudio.play();
     isClicked = false;
   } else {
     e.innerHTML = "&#x25EF;";
-    audio2.play();
+    circleAudio.play();
     isClicked = true;
   }
 };
@@ -46,14 +53,33 @@ const clearCells = () => {
       setTimeout(clear, 500);
     }
   };
+//dialog box:========================================================
+const dialogBox= () => {
+  dialog.classList.add("active")
+  setTimeout(() => dialog.classList.remove("active"),1500)
+}
+
+
 // result Checking: =================================================
 const result = (i) => { 
   if(cell[i].innerHTML == "❌"){
     console.log("cross wins")
-    clearCells()
+    dialog.innerHTML = "Cross wins"
+    winaudio.play();
+    dialogBox();
+    clearCells();
+    crossScore++;
+    cross.innerHTML = `${crossScore}`
+
   }else if (cell[i].innerHTML == "◯"){
     console.log("circle wins")
+    dialog.innerHTML= "Circle wins"
+    winaudio.play();
+    dialogBox();
     clearCells()
+    circleScore++;
+    circle.innerHTML = `${circleScore}`
+
   }
 }
 // Shorthand for cell[i].innerHTML =================================
@@ -92,6 +118,9 @@ for (let i = 0; i < cell.length; i++) {
       scaleEffect(e);
       checkCell(e);
       if (listOfDivs.length == cell.length) {
+        // loseAudio.play();
+        // dialog.innerHTML = "Draw Match"
+        // dialogBox();
         clearCells();
       }
       if(listOfDivs.length >=5){ //Starting to check after 5 inputs  
